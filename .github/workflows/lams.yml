@@ -1,17 +1,29 @@
-view: customers {
+name: LAMS Validation
 
-  sql_table_name: customers ;;
+on:
+  pull_request:
+  push:
 
-  dimension: customer_id {
-    primary_key: yes
-    description: "Unique customer identifier"
-    type: number
-    sql: ${TABLE}.customer_id ;;
-  }
+jobs:
+  lams_job:
 
-  measure: count {
-    description: "Total customer count"
-    type: count
-  }
+    runs-on: ubuntu-latest
 
-}
+    steps:
+
+      - name: Checkout LookML
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install LAMS
+        run: npm install -g @looker/look-at-me-sideways@5
+
+      - name: Run LAMS
+        run: |
+          lams \
+            --reporting=save-no \
+            --output=github-job-summary
