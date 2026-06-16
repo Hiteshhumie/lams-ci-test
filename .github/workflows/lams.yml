@@ -1,24 +1,17 @@
-name: LookML Quality Gate
+view: customers {
 
-on:
-  pull_request:
-    branches: [ main ]
+  sql_table_name: customers ;;
 
-jobs:
-  lams_lint:
-    runs-on: ubuntu-latest
-    name: LAMS Linter Job
+  dimension: customer_id {
+    primary_key: yes
+    description: "Unique customer identifier"
+    type: number
+    sql: ${TABLE}.customer_id ;;
+  }
 
-    steps:
-      - name: Checkout LookML
-        uses: actions/checkout@v4
+  measure: count {
+    description: "Total customer count"
+    type: count
+  }
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22.x'
-
-      - name: Install & Run LAMS
-        run: |
-          npm install -g @looker/look-at-me-sideways@5
-          lams --output=github-job-summary
+}
