@@ -1,0 +1,24 @@
+name: LookML Quality Gate
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lams_lint:
+    runs-on: ubuntu-latest
+    name: LAMS Linter Job
+
+    steps:
+      - name: Checkout LookML
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+
+      - name: Install & Run LAMS
+        run: |
+          npm install -g @looker/look-at-me-sideways@5
+          lams --output=github-job-summary
