@@ -2,7 +2,6 @@ name: LAMS Validation
 
 on:
   pull_request:
-  push:
 
 jobs:
   lams_job:
