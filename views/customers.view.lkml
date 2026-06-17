@@ -4,6 +4,7 @@ view: customers {
 
   dimension: pk1_customer_id {
     primary_key: yes
+    hidden : yes
     description: "Unique customer identifier"
     type: number
     sql: ${TABLE}.customer_id ;;
