@@ -1,7 +1,7 @@
 explore: employee {
 
   # ISSUE: Label exceeds 25 characters (E7)
-  label: "Employee Analytics Dashboard For Leadership Reporting"
+  label: "Employee Analytics"
 
   description: "Employee workforce analysis and reporting"
 

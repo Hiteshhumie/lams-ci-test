@@ -2,16 +2,15 @@ view: employee {
 
   sql_table_name: employees ;;
 
-  # ISSUE 1: Should be named pk1_employee_id (K1)
-  # ISSUE 2: Primary key should be hidden (K4)
-  dimension: employee_id {
+  dimension: pk1_employee_id {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.employee_id ;;
   }
 
-  # ISSUE 3: Missing description (F4)
   dimension: employee_name {
+    description: "Full name of the employee"
     sql: ${TABLE}.employee_name ;;
   }
 
